@@ -1,3 +1,5 @@
+import com.sun.org.apache.xml.internal.serializer.utils.SystemIDResolver;
+
 import java.io.File;
 import java.lang.reflect.Method;
 import java.net.URL;
@@ -8,11 +10,12 @@ public class Application {
     public static void main(String... args) {
         int componentType = 1;
         String componentSubPath = "";
-    Products order = new Products();
+
+        Products order = new Products();
         double price = order.generateOrder();
 
 
-        if (componentType == 1)
+        if (componentType == 1) //todo rausnehmen
             componentSubPath = "exchangeComponent01";
         else if (componentType == 2)
             componentSubPath = "exchangeComponent02";
@@ -34,11 +37,11 @@ public class Application {
 			Object instance = clazz.getMethod("getInstance", new Class[0]).invoke(null,new Object[0]);
 			String version = (String)method1.invoke(instance);
 			System.out.println("version : " + version);
-			
-			Class[] parameterTypes = {int.class};
+
+			Class[] parameterTypes = {double.class};
             Object port = clazz.getDeclaredField("port").get(instance);
-            Method method2 = port.getClass().getMethod("method",parameterTypes);
-            Object[] parameterValues = {1};
+            Method method2 = port.getClass().getMethod("payment",parameterTypes);
+            Object[] parameterValues = {price};
             String result = (String)method2.invoke(port,parameterValues);
             System.out.println("result : " + result);
         } catch (Exception e) {

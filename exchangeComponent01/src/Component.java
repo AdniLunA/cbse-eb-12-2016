@@ -23,7 +23,7 @@ public class Component{
             System.out.println(getVersion() + "\n");
         }
 
-        public String payment(int sum) {
+        public String payment(double sum) {
             return innerMethod(sum);
         }
 
@@ -37,7 +37,7 @@ public class Component{
         }
     }
 
-    private String innerMethod(int sum) { //payment
-        return "Payment complete: "+ sum+"€ have been payed./nThe customer is happy.";
+    private String innerMethod(double sum) { //payment
+        return "Payment complete: "+ sum+"EUR have been payed. The customer is happy.";
     }
 }

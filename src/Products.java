@@ -6,10 +6,10 @@ public class Products {
     private double sum=0;
 
     public double generateOrder(){
-    for (int i = 0; i <= 5; i++) {
-        int randomNumber = (int)Math.round(Math.random()*11);
-        sum += products[randomNumber];
-    }
-    return sum;
+        for (int i = 0; i <= 5; i++) {
+            int randomNumber = (int)Math.round(Math.random()*11);
+            sum += products[randomNumber];
+        }
+        return sum;
     }
 }

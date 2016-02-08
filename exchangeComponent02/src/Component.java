@@ -23,21 +23,21 @@ public class Component{
             System.out.println(getVersion() + "\n");
         }
 
-        public String payment(int sum) {
+        public String payment(double sum) {
             return innerMethod(sum);
         }
 
-        /*
+
         public void listMethods() {
             System.out.println("--- public methods for " + getClass().getName());
             for (int i = 0; i < methods.length; i++)
                 if (!methods[i].toString().contains("Object") && !methods[i].toString().contains("list"))
                     System.out.println(methods[i]);
             System.out.println("---");
-        }*/
+        }
     }
 
-    private String innerMethod(int sum) { //payment
-        return "Payment complete: "+ sum+"€ have been payed./nThe customer is happy.";
+    private String innerMethod(double sum) { //payment
+        return "Payment complete: "+ sum+"EUR have been payed. The customer is happy.";
     }
 }

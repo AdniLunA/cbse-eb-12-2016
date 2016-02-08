@@ -1,3 +1,3 @@
 public interface IComponent {
-    String payment(int sum);
+    String payment(double sum);
 }

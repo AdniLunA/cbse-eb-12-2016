@@ -13,7 +13,7 @@ public class Component {
     }
 
     public String getVersion() {
-        return "Component 1.00B";
+        return "Component CreditCard";
     }
 
     public class Port implements IComponent {

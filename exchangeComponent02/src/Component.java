@@ -1,6 +1,6 @@
 import java.lang.reflect.Method;
 
-public class Component {
+public class Component{
     private static Component instance = new Component();
     public Port port;
 
@@ -13,7 +13,7 @@ public class Component {
     }
 
     public String getVersion() {
-        return "Component CreditCard";
+        return "Component: Payment with CreditCard";
     }
 
     public class Port implements IComponent {
@@ -23,20 +23,21 @@ public class Component {
             System.out.println(getVersion() + "\n");
         }
 
-        public String method(String string) {
-            return innerMethod(string);
+        public String payment(int sum) {
+            return innerMethod(sum);
         }
 
+        /*
         public void listMethods() {
             System.out.println("--- public methods for " + getClass().getName());
             for (int i = 0; i < methods.length; i++)
                 if (!methods[i].toString().contains("Object") && !methods[i].toString().contains("list"))
                     System.out.println(methods[i]);
             System.out.println("---");
-        }
+        }*/
     }
 
-    private String innerMethod(String string) {
-		return string.toUpperCase();
+    private String innerMethod(int sum) { //payment
+        return "Payment complete: "+ sum+"€ have been payed./nThe customer is happy.";
     }
 }

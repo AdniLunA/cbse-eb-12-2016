@@ -8,6 +8,9 @@ public class Application {
     public static void main(String... args) {
         int componentType = 1;
         String componentSubPath = "";
+    Products order = new Products();
+        double price = order.generateOrder();
+
 
         if (componentType == 1)
             componentSubPath = "exchangeComponent01";
@@ -32,10 +35,10 @@ public class Application {
 			String version = (String)method1.invoke(instance);
 			System.out.println("version : " + version);
 			
-			Class[] parameterTypes = {String.class};
+			Class[] parameterTypes = {int.class};
             Object port = clazz.getDeclaredField("port").get(instance);
             Method method2 = port.getClass().getMethod("method",parameterTypes);
-            Object[] parameterValues = {"dhbw"};
+            Object[] parameterValues = {1};
             String result = (String)method2.invoke(port,parameterValues);
             System.out.println("result : " + result);
         } catch (Exception e) {

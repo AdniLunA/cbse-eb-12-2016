@@ -13,7 +13,7 @@ public class Component{
     }
 
     public String getVersion() {
-        return "Component DebitCard";
+        return "Component: Payment with DebitCard";
     }
 
     public class Port implements IComponent {
@@ -27,6 +27,7 @@ public class Component{
             return innerMethod(sum);
         }
 
+
         public void listMethods() {
             System.out.println("--- public methods for " + getClass().getName());
             for (int i = 0; i < methods.length; i++)
@@ -36,7 +37,7 @@ public class Component{
         }
     }
 
-    private String innerMethod(int sum) {
-		return "Payment with DebitCard complete";
+    private String innerMethod(int sum) { //payment
+        return "Payment complete: "+ sum+"€ have been payed./nThe customer is happy.";
     }
 }

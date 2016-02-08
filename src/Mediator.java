@@ -1,5 +1,7 @@
 import com.google.common.eventbus.EventBus;
 
+import java.lang.reflect.Method;
+
 public class Mediator {
     private int id;
     private EventBus eventBus;
@@ -13,25 +15,22 @@ public class Mediator {
         eventBus.register(subscriber);
     }
 
-    public void transaction(int payCardType, double costs){
+    public void transaction(double price, Object port, String version){
 
-        if (payCardType == 1) {
-            eventBus.post(new OrderCompleteEvent(1, 1, costs)); //todo warum immer id 1??? vlt besser id
+            eventBus.post(new OrderCompleteEvent(1, price, version));
+            Class[] parameterTypes = {double.class};
+            Method method2 = null;
+            try {
+                method2 = port.getClass().getMethod("payment",parameterTypes);
+
+                Object[] parameterValues = {price};
+                String result = (String)method2.invoke(port,parameterValues);
+            //    System.out.println("result : " + result);
+
+                eventBus.post(new PaymentCompleteEvent(1, result));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-        else if (payCardType == 2) {
-            eventBus.post(new OrderCompleteEvent(1, 2, costs));
-        }
-    }
-
-
-
-    /*
-    public void payWithComponent1() {
 
     }
-
-
-    public void payWithComponent2() {
-
-    }*/
-}

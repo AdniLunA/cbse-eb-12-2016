@@ -13,7 +13,7 @@ public class Component{
     }
 
     public String getVersion() {
-        return "Component: Payment with CreditCard";
+        return "Credit Card";
     }
 
     public class Port implements IComponent {
@@ -24,7 +24,7 @@ public class Component{
         }
 
         public String payment(double sum) {
-            return innerMethod(sum);
+            return innerPayment(sum);
         }
 
 
@@ -37,7 +37,7 @@ public class Component{
         }
     }
 
-    private String innerMethod(double sum) { //payment
-        return "Payment complete: "+ sum+"EUR have been payed. The customer is happy.";
+    private String innerPayment(double sum) { //payment
+        return "Payment complete: "+ sum+"EUR have been paid.";
     }
 }

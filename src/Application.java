@@ -11,11 +11,18 @@ public class Application {
         int componentType = 1;
         String componentSubPath = "";
 
+        OrderSystem orderSystem = new OrderSystem(1);
+        PaymentSystem paymentSystem = new PaymentSystem(1);
+
         Products order = new Products();
         double price = order.generateOrder();
 
+        Mediator mediator = new Mediator(1);
+        mediator.addSubscriber(orderSystem);
+        mediator.addSubscriber(paymentSystem);
 
-        if (componentType == 1) //todo rausnehmen
+
+        if (componentType == 1)
             componentSubPath = "exchangeComponent01";
         else if (componentType == 2)
             componentSubPath = "exchangeComponent02";
@@ -23,27 +30,25 @@ public class Application {
         String userDirectory = System.getProperty("user.dir");
         String fileSeparator = System.getProperty("file.separator");
         String pathToJar = userDirectory + fileSeparator + componentSubPath + fileSeparator + "Component.jar";
-        System.out.println("pathToJar : " + pathToJar);
+        //System.out.println("pathToJar : " + pathToJar);
 
-        try {
+        try {       //load Component
             URL[] urls = {new File(componentSubPath + "/Component.jar").toURI().toURL()};
 			URLClassLoader urlClassLoader = new URLClassLoader(urls,Application.class.getClassLoader());
 			Class clazz = Class.forName("Component",true,urlClassLoader);
-            System.out.println("clazz : " + clazz.toString());
+            //System.out.println("clazz : " + clazz.toString());
 
             Method method1 = clazz.getDeclaredMethod("getVersion");
-            System.out.println(method1);
+            //System.out.println(method1);
 			
 			Object instance = clazz.getMethod("getInstance", new Class[0]).invoke(null,new Object[0]);
-			String version = (String)method1.invoke(instance);
-			System.out.println("version : " + version);
+			String version = (String) method1.invoke(instance);
+			//System.out.println("version : " + version);
 
-			Class[] parameterTypes = {double.class};
+
             Object port = clazz.getDeclaredField("port").get(instance);
-            Method method2 = port.getClass().getMethod("payment",parameterTypes);
-            Object[] parameterValues = {price};
-            String result = (String)method2.invoke(port,parameterValues);
-            System.out.println("result : " + result);
+            mediator.transaction(price, port, version);
+
         } catch (Exception e) {
             e.printStackTrace();
         }

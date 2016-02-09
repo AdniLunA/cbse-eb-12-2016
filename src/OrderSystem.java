@@ -12,7 +12,7 @@ public class OrderSystem extends Subscriber{
     public void receive(OrderCompleteEvent orderCompleteEvent){
         double price = orderCompleteEvent.getPrice();
         String version = orderCompleteEvent.getVersion();
-        System.out.println("Order with value of "+price+" complete. Initiating payment with "+version+".");
+        System.out.println("Order with value of "+price+" EUR complete. Initiating payment with "+version+".");
 
     }
 

@@ -38,6 +38,6 @@ public class Component{
     }
 
     private String innerPayment(double sum) { //payment
-        return "Payment complete: "+ sum+"EUR have been paid.";
+        return "Payment complete: "+ sum+" EUR have been paid.";
     }
 }
